@@ -1,23 +1,25 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI'
 import './BooksApp.css'
 import Book from "./Book";
+import SearchBooks from './SearchBooks'
 import {Route, Link} from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
     books : []
   };
-
+  componentDidMount() {
+        BooksAPI.getAll().then((books) => {
+            this.setState(() => ({
+                books
+            }))
+        });
+  }
 
   render() {
     return (
       <div className="app">
-        <Book
-            coverUrl='url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")'
-            title="Title"
-            author="Author"
-            status="Status"/>
         <Route path='/search' render={() => (
           <div className="search-books">
             <div className="search-books-bar">
@@ -32,6 +34,8 @@ class BooksApp extends React.Component {
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
                 <input type="text" placeholder="Search by title or author"/>
+                  {console.log("state books"+this.state.books)}
+                  <SearchBooks books={this.state.books}/>
 
               </div>
             </div>
