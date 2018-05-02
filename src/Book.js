@@ -16,8 +16,6 @@ class Book extends Component {
     };
 
     render() {
-        console.log(this.props.coverUrl);
-        console.log(this.props.title);
         return (
             <div className="book">
                 <div className="book-top">
