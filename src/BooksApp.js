@@ -4,10 +4,7 @@ import './BooksApp.css'
 import Book from "./Book";
 import SearchBooks from './SearchBooks'
 import {Route, Link} from 'react-router-dom'
-
-const currentlyReading = "currentlyReading";
-const wantToRead = "wantToRead";
-const read = "Read";
+import MyReads from './MyReads'
 
 class BooksApp extends React.Component {
     state = {
@@ -45,57 +42,7 @@ class BooksApp extends React.Component {
                 )}/>
 
                 <Route exact path='/' render={() => (
-                    <div className="list-books">
-                        <div className="list-books-title">
-                            <h1>MyReads</h1>
-                        </div>
-                        <div className="list-books-content">
-                            <div>
-                                <div className="bookshelf">
-                                    <h2 className="bookshelf-title">Currently Reading</h2>
-                                    <div className="bookshelf-books">
-                                        <ol className="books-grid">
-                                            {this.state.books.filter((b) => (
-                                                b.shelf.toLowerCase() === (currentlyReading.toLowerCase())
-                                            )).map((book) => (
-                                                <li key={book.id}><Book book={book}/></li>
-                                            ))}
-                                        </ol>
-                                    </div>
-                                </div>
-                                <div className="bookshelf">
-                                    <h2 className="bookshelf-title">Want to Read</h2>
-                                    <div className="bookshelf-books">
-                                        <ol className="books-grid">
-                                            {this.state.books.filter((b) => (
-                                                b.shelf.toLowerCase() === (wantToRead.toLowerCase())
-                                            )).map((book) => (
-                                                <li key={book.id}><Book book={book}/></li>
-                                            ))}
-                                        </ol>
-                                    </div>
-                                </div>
-                                <div className="bookshelf">
-                                    <h2 className="bookshelf-title">Read</h2>
-                                    <div className="bookshelf-books">
-                                        <ol className="books-grid">
-                                            {this.state.books.filter((b) => (
-                                                b.shelf.toLowerCase() === (read.toLowerCase())
-                                            )).map((book) => (
-                                                <li key={book.id}><Book book={book}/></li>
-                                            ))}
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="open-search">
-                            <Link
-                                to='/search'>
-                                Add a book
-                            </Link>
-                        </div>
-                    </div>
+                    <MyReads books = {this.state.books} />
                 )}/>
             </div>
         )
