@@ -45,7 +45,7 @@ class MyReads extends Component {
                                         <li key={book.id}>
                                             <Book
                                                 book={book}
-                                                onUpdateBookShelf = {(book, shelf) => {
+                                                onUpdateBookShelf={(book, shelf) => {
                                                     onUpdateBookShelf(book, shelf);
                                                 }}
                                             />
@@ -61,7 +61,14 @@ class MyReads extends Component {
                                     {showingContacts.filter((b) => (
                                         b.shelf.toLowerCase() === (wantToRead.toLowerCase())
                                     )).map((book) => (
-                                        <li key={book.id}><Book book={book}/></li>
+                                        <li key={book.id}>
+                                            <Book
+                                                book={book}
+                                                onUpdateBookShelf={(book, shelf) => {
+                                                    onUpdateBookShelf(book, shelf);
+                                                }}
+                                            />
+                                        </li>
                                     ))}
                                 </ol>
                             </div>
@@ -73,7 +80,14 @@ class MyReads extends Component {
                                     {showingContacts.filter((b) => (
                                         b.shelf.toLowerCase() === (read.toLowerCase())
                                     )).map((book) => (
-                                        <li key={book.id}><Book book={book}/></li>
+                                        <li key={book.id}>
+                                            <Book
+                                                book={book}
+                                                onUpdateBookShelf={(book, shelf) => {
+                                                    onUpdateBookShelf(book, shelf);
+                                                }}
+                                            />
+                                        </li>
                                     ))}
                                 </ol>
                             </div>
