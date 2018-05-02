@@ -4,16 +4,15 @@ import * as BooksAPI from './BooksAPI'
 
 class Book extends Component {
     static propTypes = {
-        book: PropTypes.object.isRequired
+        book: PropTypes.object.isRequired,
+        onUpdateBookShelf: PropTypes.func.isRequired
     };
     handleShelfChange = (e) => {
-        console.log(e.target.value);
-        console.log(this.props.book);
-        BooksAPI.update(this.props.book, e.target.value).then((book) => {
-            console.log(book);
-        })
+        if(this.props.onUpdateBookShelf) {
+            console.log('test');
+            this.props.onUpdateBookShelf(this.props.book, e.target.value);
+        }
     };
-
     render() {
         const book = this.props;
         return (

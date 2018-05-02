@@ -9,13 +9,15 @@ const read = "read";
 
 class MyReads extends Component {
     static propTypes = {
-        books: PropTypes.object.isRequired
+        books: PropTypes.object.isRequired,
+        onUpdateBookShelf: PropTypes.func.isRequired
     };
     state = {
         query: ''
     };
 
     render() {
+        const onUpdateBookShelf = this.props;
         const {books} = this.props;
         {//TODO Figure out why books is usually undefined but works with showingBooks
         }
@@ -40,7 +42,14 @@ class MyReads extends Component {
                                     {showingContacts.filter((b) => (
                                         b.shelf.toLowerCase() === (currentlyReading.toLowerCase())
                                     )).map((book) => (
-                                        <li key={book.id}><Book book={book}/></li>
+                                        <li key={book.id}>
+                                            <Book
+                                                book={book}
+                                                onUpdateBookShelf = {(book, shelf) => {
+                                                    onUpdateBookShelf(book, shelf);
+                                                }}
+                                            />
+                                        </li>
                                     ))}
                                 </ol>
                             </div>
