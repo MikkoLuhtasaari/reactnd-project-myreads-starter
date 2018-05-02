@@ -5,8 +5,8 @@ import Book from "./Book";
 import SearchBooks from './SearchBooks'
 import {Route, Link} from 'react-router-dom'
 
-const currentlyReading = "Currently Reading";
-const wantToRead = "Want to Read";
+const currentlyReading = "currentlyReading";
+const wantToRead = "wantToRead";
 const read = "Read";
 
 class BooksApp extends React.Component {
@@ -56,9 +56,9 @@ class BooksApp extends React.Component {
                                     <div className="bookshelf-books">
                                         <ol className="books-grid">
                                             {this.state.books.filter((b) => (
-                                                b.shelf.toLowerCase().includes(currentlyReading.toLowerCase())
+                                                b.shelf.toLowerCase() === (currentlyReading.toLowerCase())
                                             )).map((book) => (
-                                                <li><Book book={book}/></li>
+                                                <li key={book.id}><Book book={book}/></li>
                                             ))}
                                         </ol>
                                     </div>
@@ -68,9 +68,9 @@ class BooksApp extends React.Component {
                                     <div className="bookshelf-books">
                                         <ol className="books-grid">
                                             {this.state.books.filter((b) => (
-                                                b.shelf.toLowerCase().includes(wantToRead.toLowerCase())
+                                                b.shelf.toLowerCase() === (wantToRead.toLowerCase())
                                             )).map((book) => (
-                                                <li><Book book={book}/></li>
+                                                <li key={book.id}><Book book={book}/></li>
                                             ))}
                                         </ol>
                                     </div>
@@ -80,9 +80,9 @@ class BooksApp extends React.Component {
                                     <div className="bookshelf-books">
                                         <ol className="books-grid">
                                             {this.state.books.filter((b) => (
-                                                b.shelf.toLowerCase().includes(read.toLowerCase())
+                                                b.shelf.toLowerCase() === (read.toLowerCase())
                                             )).map((book) => (
-                                                <li><Book book={book}/></li>
+                                                <li key={book.id}><Book book={book}/></li>
                                             ))}
                                         </ol>
                                     </div>
