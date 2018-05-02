@@ -34,9 +34,10 @@ class BooksApp extends React.Component {
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
                 <input type="text" placeholder="Search by title or author"/>
-                  {console.log("state books"+this.state.books)}
                   <SearchBooks books={this.state.books}/>
-
+                  {this.state.books.map((book) =>(
+                            <Book key={book.id} book={book}></Book>
+                  ))}
               </div>
             </div>
             <div className="search-books-results">

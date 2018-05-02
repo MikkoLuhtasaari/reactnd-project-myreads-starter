@@ -11,9 +11,15 @@ class SearchBooks extends Component {
         query : ''
     };
     render() {
+        const {query} = this.state;
+        const books = this.props;
+        const showingBooks = query === ''
+            ? books
+            : books.filter((b) => (
+                b.name.toLowerCase().includes(query.toLowerCase())
+            ));
         return (
             <div>
-                {console.log(this.state.books)}
             </div>
         )
     }
