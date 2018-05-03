@@ -20,8 +20,6 @@ class BooksApp extends React.Component {
     }
 
     updateBookShelf = (book, shelf) => {
-        {//TODO Pass function all the way down to Book.js
-        }
         BooksAPI.update(book, shelf).then((book) => {
             BooksAPI.getAll().then((books) => {
                 this.setState(() => ({
