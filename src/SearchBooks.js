@@ -8,7 +8,7 @@ class SearchBooks extends Component {
     };
 
     updateQuery = (e) => {
-        if(this.props.onUpdateQuery && e.target.value.length > 0) {
+        if(this.props.onUpdateQuery) {
             this.props.onUpdateQuery(e.target.value);
         }
     };

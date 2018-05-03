@@ -30,11 +30,16 @@ class BooksApp extends React.Component {
     };
 
     searchBooks = (query) => {
-        BooksAPI.search(query).then((books) => {
+        if(query && query.length > 0) {
+            BooksAPI.search(query).then((books) => {
+                this.setState(() => ({
+                    books
+                }))
+            })} else {
             this.setState(() => ({
-                books
+                books : []
             }))
-        })
+        }
     };
 
     render() {
@@ -49,7 +54,7 @@ class BooksApp extends React.Component {
                                 this.searchBooks(query)
                             }}
                         />
-                        {this.state.books.length > 0 &&
+                        {this.state.books && this.state.books.length > 0 &&
                         <div className="search-books-results">
                             <ol className="books-grid">
                                 {this.state.books.map((book) => (
