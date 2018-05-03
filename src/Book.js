@@ -7,7 +7,6 @@ class Book extends Component {
     };
     handleShelfChange = (e) => {
         if(this.props.onUpdateBookShelf) {
-            console.log('test');
             this.props.onUpdateBookShelf(this.props.book, e.target.value);
         }
     };
