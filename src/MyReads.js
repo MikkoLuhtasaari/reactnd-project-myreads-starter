@@ -3,13 +3,9 @@ import PropTypes from 'prop-types'
 import Book from './Book'
 import {Link} from 'react-router-dom'
 
-const currentlyReading = "currentlyReading";
-const wantToRead = "wantToRead";
-const read = "read";
-
 class MyReads extends Component {
     static propTypes = {
-        books: PropTypes.object.isRequired,
+        books: PropTypes.array.isRequired,
         onUpdateBookShelf: PropTypes.func.isRequired
     };
     state = {
@@ -17,16 +13,19 @@ class MyReads extends Component {
     };
 
     render() {
-        const onUpdateBookShelf = this.props;
-        const {books} = this.props;
-        {//TODO Figure out why books is usually undefined but works with showingBooks
-        }
+        const shelves = {
+            currentlyReading: ['Currently Reading', 'currentlyReading'],
+            wantToRead: ['Want to Read', 'wantToRead'],
+            read: ['Read', 'read']
+        };
+
+        const {onUpdateBookShelf, books} = this.props;
         const {query} = this.state;
+
         const showingContacts = query === ''
             ? books
             : books.filter((b) => (
                 b.name.toLowerCase().includes(query.toLowerCase())));
-        console.log("showingBooks " + showingContacts);
 
         return (
             <div className="list-books">
@@ -34,13 +33,13 @@ class MyReads extends Component {
                     <h1>MyReads</h1>
                 </div>
                 <div className="list-books-content">
-                    <div>
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Currently Reading</h2>
+                    {Object.keys(shelves).map((shelf) =>
+                        <div className="bookshelf" key={shelf}>
+                            <h2 className="bookshelf-title">{shelves[shelf][0]}</h2>
                             <div className="bookshelf-books">
                                 <ol className="books-grid">
                                     {showingContacts.filter((b) => (
-                                        b.shelf.toLowerCase() === (currentlyReading.toLowerCase())
+                                        b.shelf.toLowerCase() === (shelves[shelf][1].toLowerCase())
                                     )).map((book) => (
                                         <li key={book.id}>
                                             <Book
@@ -54,45 +53,7 @@ class MyReads extends Component {
                                 </ol>
                             </div>
                         </div>
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Want to Read</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {showingContacts.filter((b) => (
-                                        b.shelf.toLowerCase() === (wantToRead.toLowerCase())
-                                    )).map((book) => (
-                                        <li key={book.id}>
-                                            <Book
-                                                book={book}
-                                                onUpdateBookShelf={(book, shelf) => {
-                                                    onUpdateBookShelf(book, shelf);
-                                                }}
-                                            />
-                                        </li>
-                                    ))}
-                                </ol>
-                            </div>
-                        </div>
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Read</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {showingContacts.filter((b) => (
-                                        b.shelf.toLowerCase() === (read.toLowerCase())
-                                    )).map((book) => (
-                                        <li key={book.id}>
-                                            <Book
-                                                book={book}
-                                                onUpdateBookShelf={(book, shelf) => {
-                                                    onUpdateBookShelf(book, shelf);
-                                                }}
-                                            />
-                                        </li>
-                                    ))}
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
+                    )}
                 </div>
                 <div className="open-search">
                     <Link
