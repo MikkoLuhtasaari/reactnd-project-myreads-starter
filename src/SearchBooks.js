@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 class SearchBooks extends Component {
     static propTypes = {
-        onUpdateQuery: PropTypes.func.isRequired
+        onUpdateQuery: PropTypes.func.isRequired,
     };
 
     updateQuery = (e) => {

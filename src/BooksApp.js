@@ -8,7 +8,8 @@ import MyReads from './MyReads'
 
 class BooksApp extends React.Component {
     state = {
-        books: []
+        books: [],
+        searchBooks: []
     };
 
     componentDidMount() {
@@ -31,13 +32,13 @@ class BooksApp extends React.Component {
 
     searchBooks = (query) => {
         if(query && query.length > 0) {
-            BooksAPI.search(query).then((books) => {
+            BooksAPI.search(query).then((searchBooks) => {
                 this.setState(() => ({
-                    books
+                    searchBooks
                 }))
             })} else {
             this.setState(() => ({
-                books : []
+                searchBooks: []
             }))
         }
     };
@@ -49,19 +50,18 @@ class BooksApp extends React.Component {
                 <Route path='/search' render={() => (
                     <div>
                         <SearchBooks
-                            books={this.state.books}
                             onUpdateQuery={(query) => {
                                 this.searchBooks(query)
                             }}
                         />
-                        {this.state.books && this.state.books.length > 0 &&
+                        {this.state.searchBooks && this.state.searchBooks.length > 0 &&
                         <div className="search-books-results">
                             <ol className="books-grid">
-                                {this.state.books.map((book) => (
+                                {this.state.searchBooks.map((book) => (
                                     <Book
                                         key={book.id} book={book}
-                                        onUpdateBookShelf={(book, shelf) => {
-                                            this.updateBookShelf(book, shelf);
+                                        onUpdateBookShelf={(searchBooks, shelf) => {
+                                            this.updateBookShelf(searchBooks, shelf);
                                         }}
                                     />
                                 ))}
