@@ -43,6 +43,12 @@ class BooksApp extends React.Component {
         }
     };
 
+    clearSearchResults = () => {
+        this.setState(() => ({
+            searchBooks: []
+        }))
+    };
+
     render() {
         return (
             <div className="app">
@@ -50,6 +56,9 @@ class BooksApp extends React.Component {
                 <Route path='/search' render={() => (
                     <div>
                         <SearchBooks
+                            clearSearchResults={() => {
+                                this.clearSearchResults()
+                            }}
                             onUpdateQuery={(query) => {
                                 this.searchBooks(query)
                             }}
