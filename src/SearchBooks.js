@@ -1,25 +1,30 @@
 import React, {Component} from 'react'
-import * as BooksAPI from './BooksAPI'
+import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import Book from "./Book";
 
 class SearchBooks extends Component {
     static propTypes = {
-        books: PropTypes.array.isRequired
+        onUpdateQuery: PropTypes.func.isRequired
     };
-    state = {
-        query : ''
+
+    updateQuery = (e) => {
+        if(this.props.onUpdateQuery) {
+            console.log(e.target.value);
+            this.props.onUpdateQuery(e.target.value);
+        }
     };
+
     render() {
-        const {query} = this.state;
-        const books = this.props;
-        const showingBooks = query === ''
-            ? books
-            : books.filter((b) => (
-                b.name.toLowerCase().includes(query.toLowerCase())
-            ));
         return (
             <div>
+                <div className="search-books">
+                    <div className="search-books-bar">
+                        <Link className="close-search" to='/'>Close</Link>
+                        <div className="search-books-input-wrapper">
+                            <input onChange={this.updateQuery} value={this.value} type="text" placeholder="Search by title or author"/>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

@@ -3,7 +3,7 @@ import * as BooksAPI from './BooksAPI'
 import './BooksApp.css'
 import Book from "./Book";
 import SearchBooks from './SearchBooks'
-import {Route, Link} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import MyReads from './MyReads'
 
 class BooksApp extends React.Component {
@@ -29,32 +29,41 @@ class BooksApp extends React.Component {
         })
     };
 
+    searchBooks = (query) => {
+        BooksAPI.search(query).then((books) => {
+            this.setState(() => ({
+                books
+            }))
+        })
+    };
+
     render() {
         return (
             <div className="app">
 
                 <Route path='/search' render={() => (
-                    <div className="search-books">
-                        <div className="search-books-bar">
-                            <Link className="close-search" to='/'>Close</Link>
-                            <div className="search-books-input-wrapper">
-                                <input type="text" placeholder="Search by title or author"/>
-                                <SearchBooks books={this.state.books}/>
-                                {this.state.books.map((book) => (
-                                    <Book key={book.id} book={book}></Book>
-                                ))}
-                            </div>
-                        </div>
+                    <div>
+                        <SearchBooks
+                            books={this.state.books}
+                            onUpdateQuery={(query) => {
+                                this.searchBooks(query)
+                            }}
+                        />
+                        {this.state.books.length > 0 &&
                         <div className="search-books-results">
-                            <ol className="books-grid"></ol>
-                        </div>
+                            <ol className="books-grid">
+                                {this.state.books.map((book) => (
+                                    <Book key={book.id} book={book}/>
+                                ))}
+                            </ol>
+                        </div>}
                     </div>
                 )}/>
 
                 <Route exact path='/' render={() => (
                     <MyReads
                         books={this.state.books}
-                        onUpdateBookShelf = {(book, shelf) => {
+                        onUpdateBookShelf={(book, shelf) => {
                             this.updateBookShelf(book, shelf);
                         }}
                     />
