@@ -15,8 +15,9 @@ class Book extends Component {
         return (
             <div className="book">
                 <div className="book-top">
+                    {book.book.imageLinks && book.book.imageLinks.thumbnail &&
                     <div className="book-cover"
-                         style={{width: 128, height: 193, backgroundImage: `url(${book.book.imageLinks.thumbnail})`}}/>
+                         style={{width: 128, height: 193, backgroundImage: `url(${book.book.imageLinks.thumbnail})`}}/>}
                     <div className="book-shelf-changer">
                         <select defaultValue="none" onChange={this.handleShelfChange} value={this.value}>
                             <option value="none" disabled>Move to...</option>
@@ -28,7 +29,8 @@ class Book extends Component {
                     </div>
                 </div>
                 <div className="book-title">{book.book.title}</div>
-                <div className="book-authors">{book.book.authors[0]}</div>
+                {book.book.authors && book.book.authors.length > 0 &&
+                <div className="book-authors">{book.book.authors[0]}</div>}
             </div>
         )
     }
