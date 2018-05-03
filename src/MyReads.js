@@ -22,7 +22,7 @@ class MyReads extends Component {
         const {onUpdateBookShelf, books} = this.props;
         const {query} = this.state;
 
-        const showingContacts = query === ''
+        const showingBooks = query === ''
             ? books
             : books.filter((b) => (
                 b.name.toLowerCase().includes(query.toLowerCase())));
@@ -38,7 +38,7 @@ class MyReads extends Component {
                             <h2 className="bookshelf-title">{shelves[shelf][0]}</h2>
                             <div className="bookshelf-books">
                                 <ol className="books-grid">
-                                    {showingContacts.filter((b) => (
+                                    {showingBooks.filter((b) => (
                                         b.shelf.toLowerCase() === (shelves[shelf][1].toLowerCase())
                                     )).map((book) => (
                                         <li key={book.id}>
