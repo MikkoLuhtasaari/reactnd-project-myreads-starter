@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 class SearchBooks extends Component {
@@ -9,15 +9,15 @@ class SearchBooks extends Component {
     };
 
     updateQuery = (e) => {
-        if(this.props.onUpdateQuery) {
+        if (this.props.onUpdateQuery) {
             this.props.onUpdateQuery(e.target.value);
         }
     };
 
     clearSearchResults = () => {
-      if(this.props.clearSearchResults) {
-          this.props.clearSearchResults();
-      }
+        if (this.props.clearSearchResults) {
+            this.props.clearSearchResults();
+        }
     };
 
     render() {
@@ -27,7 +27,8 @@ class SearchBooks extends Component {
                     <div className="search-books-bar">
                         <Link className="close-search" to='/' onClick={this.clearSearchResults}>Close</Link>
                         <div className="search-books-input-wrapper">
-                            <input onChange={this.updateQuery} value={this.value} type="text" placeholder="Search by title or author"/>
+                            <input onChange={this.updateQuery} value={this.value} type="text"
+                                   placeholder="Search by title or author"/>
                         </div>
                     </div>
                 </div>

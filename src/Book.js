@@ -6,10 +6,11 @@ class Book extends Component {
         book: PropTypes.object.isRequired
     };
     handleShelfChange = (e) => {
-        if(this.props.onUpdateBookShelf) {
+        if (this.props.onUpdateBookShelf) {
             this.props.onUpdateBookShelf(this.props.book, e.target.value);
         }
     };
+
     render() {
         const book = this.props;
         return (

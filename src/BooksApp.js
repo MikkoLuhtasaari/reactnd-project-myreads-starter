@@ -3,7 +3,7 @@ import * as BooksAPI from './BooksAPI'
 import './BooksApp.css'
 import Book from "./Book";
 import SearchBooks from './SearchBooks'
-import {Route} from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import MyReads from './MyReads'
 
 class BooksApp extends React.Component {
@@ -31,12 +31,13 @@ class BooksApp extends React.Component {
     };
 
     searchBooks = (query) => {
-        if(query && query.length > 0) {
+        if (query && query.length > 0) {
             BooksAPI.search(query).then((searchBooks) => {
                 this.setState(() => ({
                     searchBooks
                 }))
-            })} else {
+            })
+        } else {
             this.setState(() => ({
                 searchBooks: []
             }))
