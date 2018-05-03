@@ -53,7 +53,12 @@ class BooksApp extends React.Component {
                         <div className="search-books-results">
                             <ol className="books-grid">
                                 {this.state.books.map((book) => (
-                                    <Book key={book.id} book={book}/>
+                                    <Book
+                                        key={book.id} book={book}
+                                        onUpdateBookShelf={(book, shelf) => {
+                                            this.updateBookShelf(book, shelf);
+                                        }}
+                                    />
                                 ))}
                             </ol>
                         </div>}
