@@ -30,11 +30,23 @@ class BooksApp extends React.Component {
         })
     };
 
+    addShelvesToBooks = (books, searchBooks) => {
+        console.log("Adding shelves to books");
+        for(let book of searchBooks) {
+            for(let comparator of books) {
+                if(book.id === comparator.id) {
+                    book.shelf = comparator.shelf
+                }
+            }
+        }
+        return searchBooks
+    };
+
     searchBooks = (query) => {
         if (query && query.length > 0) {
             BooksAPI.search(query).then((searchBooks) => {
-                this.setState(() => ({
-                    searchBooks
+                this.setState((currentState) => ({
+                    searchBooks : this.addShelvesToBooks(currentState.books, searchBooks)
                 }))
             })
         } else {
