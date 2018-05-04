@@ -1,15 +1,12 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Book from './Book'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 class MyReads extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
         onUpdateBookShelf: PropTypes.func.isRequired
-    };
-    state = {
-        query: ''
     };
 
     render() {
@@ -18,14 +15,7 @@ class MyReads extends Component {
             wantToRead: ['Want to Read', 'wantToRead'],
             read: ['Read', 'read']
         };
-
         const {onUpdateBookShelf, books} = this.props;
-        const {query} = this.state;
-
-        const showingBooks = query === ''
-            ? books
-            : books.filter((b) => (
-                b.name.toLowerCase().includes(query.toLowerCase())));
 
         return (
             <div className="list-books">
@@ -38,7 +28,7 @@ class MyReads extends Component {
                             <h2 className="bookshelf-title">{shelves[shelf][0]}</h2>
                             <div className="bookshelf-books">
                                 <ol className="books-grid">
-                                    {showingBooks.filter((b) => (
+                                    {books.filter((b) => (
                                         b.shelf.toLowerCase() === (shelves[shelf][1].toLowerCase())
                                     )).map((book) => (
                                         <li key={book.id}>

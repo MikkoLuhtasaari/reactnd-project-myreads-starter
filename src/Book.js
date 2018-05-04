@@ -22,8 +22,8 @@ class Book extends Component {
                     <div className="book-shelf-changer">
                         <select
                             defaultValue={!book.book.shelf
-                            ? "none"
-                            : book.book.shelf}
+                                ? "none"
+                                : book.book.shelf}
                             onChange={this.handleShelfChange}
                             value={this.value}>
                             <option disabled>Move to...</option>

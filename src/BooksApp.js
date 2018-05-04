@@ -3,7 +3,7 @@ import * as BooksAPI from './BooksAPI'
 import './BooksApp.css'
 import Book from "./Book";
 import SearchBooks from './SearchBooks'
-import { Route } from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import MyReads from './MyReads'
 
 class BooksApp extends React.Component {
@@ -32,9 +32,9 @@ class BooksApp extends React.Component {
 
     addShelvesToBooks = (books, searchBooks) => {
         console.log("Adding shelves to books");
-        for(let book of searchBooks) {
-            for(let comparator of books) {
-                if(book.id === comparator.id) {
+        for (let book of searchBooks) {
+            for (let comparator of books) {
+                if (book.id === comparator.id) {
                     book.shelf = comparator.shelf
                 }
             }
@@ -46,7 +46,7 @@ class BooksApp extends React.Component {
         if (query && query.length > 0) {
             BooksAPI.search(query).then((searchBooks) => {
                 this.setState((currentState) => ({
-                    searchBooks : this.addShelvesToBooks(currentState.books, searchBooks)
+                    searchBooks: this.addShelvesToBooks(currentState.books, searchBooks)
                 }))
             })
         } else {
