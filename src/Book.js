@@ -16,13 +16,13 @@ class Book extends Component {
         return (
             <div className="book">
                 <div className="book-top">
-                    {/* Check if the book has image that can be rendered */}
+                    { /* Check if the book has image that can be rendered */ }
                     {book.book.imageLinks && book.book.imageLinks.thumbnail &&
                     <div className="book-cover"
                          style={{width: 128, height: 193, backgroundImage: `url(${book.book.imageLinks.thumbnail})`}}/>}
                     <div className="book-shelf-changer">
+                        { /* If book doesn't have shelf set default to none else set default to shelf value */ }
                         <select
-                            {/* If book doesn't have shelf set default to none else set default to shelf value */}
                             defaultValue={!book.book.shelf
                                 ? "none"
                                 : book.book.shelf}
