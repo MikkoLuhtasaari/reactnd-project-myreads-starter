@@ -21,19 +21,19 @@ To get started developing right away:
 │   ├── favicon.ico # React Icon, You may change if you wish.
 │   └── index.html # DO NOT MODIFY
 └── src
-    ├── BooksApp.css # Styles for your app. Feel free to customize this as you desire.
-    ├── BooksApp.js # Starting point of the application. Responsible for handling the state.
-    ├── BooksApp.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
-    ├── MyReads.js # A collection of books sorted by shelf status.
-    ├── SearchBooks.js # Allows user to search for new books and add them to their shelves.
-    ├── Book.js # Used for rendering individual books.
-    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
     ├── icons # Helpful images for your app. Use at your discretion.
     │   ├── add.svg
     │   ├── arrow-back.svg
     │   └── arrow-drop-down.svg
+    ├── Book.js # Used for rendering individual books.
+    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
+    ├── BooksApp.css # Styles for your app. Feel free to customize this as you desire.
+    ├── BooksApp.js # Starting point of the application. Responsible for handling the state.
+    ├── BooksApp.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
     ├── index.css # Global styles. You probably won't need to change anything here.
-    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
+    ├── index.js # You should not need to modify this file. It is used for DOM rendering only.
+    ├── MyReads.js # A collection of books sorted by shelf status.
+    └── SearchBooks.js # Allows user to search for new books and add them to their shelves.
 ```
 
 Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
