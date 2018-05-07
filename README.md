@@ -21,9 +21,12 @@ To get started developing right away:
 │   ├── favicon.ico # React Icon, You may change if you wish.
 │   └── index.html # DO NOT MODIFY
 └── src
-    ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── BooksApp.js # This is the root of your app. Contains static HTML right now.
+    ├── BooksApp.css # Styles for your app. Feel free to customize this as you desire.
+    ├── BooksApp.js # Starting point of the application. Responsible for handling the state.
     ├── BooksApp.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
+    ├── MyReads.js # A collection of books sorted by shelf status.
+    ├── SearchBooks.js # Allows user to search for new books and add them to their shelves.
+    ├── Book.js # Used for rendering individual books.
     ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
     ├── icons # Helpful images for your app. Use at your discretion.
     │   ├── add.svg
